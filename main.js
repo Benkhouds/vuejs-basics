@@ -25,7 +25,7 @@ const app = Vue.createApp({
          this.cart++;
       },
       removeFromCart() {
-         this.cart--;
+         if (this.cart > 0) this.cart--;
       },
       changeImage(src) {
          this.image = src;
