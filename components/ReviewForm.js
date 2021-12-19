@@ -1,7 +1,7 @@
 app.component('review-form', {
-  template:
-    /*html*/
-    `
+   template:
+      /*html*/
+      `
     <form class="review-form" @submit.prevent="onSubmit">
       <h3>Leave a review</h3>
 
@@ -19,34 +19,48 @@ app.component('review-form', {
         <option>2</option>
         <option>1</option>
       </select>
+         <label for="recommend">Would you recommend this product ?</label>
+      <select  id="recommend" v-model="recommend">
+        <option>yes</option>
+        <option>no</option>
+      </select>
   
       <input class="button" type="submit" value="Submit">  
     
     </form>
   `,
-  data() {
-    return {
-      name: '',
-      text: '',
-      rating: null
-    }
-  },
-  methods: {
-    onSubmit() {
-      if (this.name === '' || this.text === '' || this.rating === null) {
-        alert('Review is incomplete. Please fill out every field.')
-        return
-      }
+   data() {
+      return {
+         name: '',
+         text: '',
+         recommend: '',
+         rating: null,
+      };
+   },
+   methods: {
+      onSubmit() {
+         if (
+            this.name === '' ||
+            this.text === '' ||
+            this.rating === null ||
+            this.recommend === ''
+         ) {
+            alert('Review is incomplete. Please fill out every field.');
+            return;
+         }
 
-      const review = {
-        name: this.name,
-        text: this.text,
-        rating: this.rating
-      }
-      this.$emit('review-submitted', review)
-      this.name = ''
-      this.text = ''
-      this.rating = null
-    }
-  }
-})
+         const review = {
+            name: this.name,
+            text: this.text,
+            rating: this.rating,
+            recommend:
+               this.recommend === 'yes' ? 'recommended ' : "didn't recommend",
+         };
+         this.$emit('review-submitted', review);
+         this.name = '';
+         this.text = '';
+         this.recommend = '';
+         this.rating = null;
+      },
+   },
+});
