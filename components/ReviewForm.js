@@ -18,24 +18,23 @@ app.component('review-form', {
           </select>
           <p>Would your recommend this Product ?</p>
           <div>
-              <label for="no">
-                  No
-                  <input type="radio" id="no" value="no" />
-              </label>
-          </div> 
-          <div>
               <label for="yes">
                   Yes
-                  <input type="radio" id="yes" value="yes" />
+                  <input v-model="recommend" type="radio" id="yes" :value="'yes'" />
+              </label>
+              <label for="no">
+                  No
+                  <input v-model="recommend" type="radio" id="no" :value="'no'"  />
               </label>
           </div> 
-         <input class="button" type="submit" value="Submit"> 
+          <input  class="button" type="submit" value="Submit"> 
         </form> 
       `,
    data() {
       return {
          name: '',
          review: '',
+         recommend: 'yes',
          rating: null,
       };
    },
@@ -49,9 +48,11 @@ app.component('review-form', {
             name: this.name,
             review: this.review,
             rating: this.rating,
+            recommend:
+               this.recommend === 'yes' ? 'recommended' : "didn't recommend",
          };
          this.$emit('review-submitted', productReview);
-
+         this.recommend = 'true';
          this.name = '';
          this.review = '';
          this.rating = null;

@@ -13,6 +13,7 @@ app.component('review-list', {
         <ul>
           <li v-for="(review, index) in reviews">
             {{review.name }} gave this {{review.rating}} stars
+            and he/she {{review.recommend}} this product.
             <br/>
             "{{review.review}}"
           </li>
