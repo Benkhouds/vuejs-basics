@@ -33,13 +33,18 @@ const app = Vue.createApp({
    },
    computed: {
       title() {
-         return this.brand + ' ' + this.product + ' is on sale';
+         return this.brand + ' ' + this.product;
       },
       image() {
          return this.variants[this.selected].image;
       },
       inStock() {
          return this.variants[this.selected].quantity;
+      },
+      sale() {
+         if (this.onSale) {
+            return `${this.brand} ${this.product} is on sale`;
+         }
       },
    },
 });
