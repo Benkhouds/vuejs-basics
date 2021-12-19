@@ -16,6 +16,19 @@ app.component('review-form', {
               <option>2</option>
               <option>1</option>
           </select>
+          <p>Would your recommend this Product ?</p>
+          <div>
+              <label for="no">
+                  No
+                  <input type="radio" id="no" value="no" />
+              </label>
+          </div> 
+          <div>
+              <label for="yes">
+                  Yes
+                  <input type="radio" id="yes" value="yes" />
+              </label>
+          </div> 
          <input class="button" type="submit" value="Submit"> 
         </form> 
       `,
